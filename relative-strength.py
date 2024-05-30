@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import rs_data
 import rs_ranking
 import sys
