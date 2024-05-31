@@ -67,12 +67,12 @@ def strength(closes: pd.Series):
         return 0
 
 def quarters_perf(closes: pd.Series, n):
-    length = min(len(closes), n*int(252/4))
-    prices = closes.tail(length)
-    pct_chg = prices.pct_change().dropna()
-    perf_cum = (pct_chg + 1).cumprod() - 1
-    return perf_cum.tail(1).item()
-
+    if len(closes) < (n * int(252/4)):
+        return 0;
+    
+    start_price = closes.iloc[-n * int(252/4)]  # Price 'n' quarters ago
+    end_price = closes.iloc[-1]  # Price at the end of the period
+    return (end_price / start_price) - 1  # Percentage change in price over the period
 
 def rankings():
     """Returns a dataframe with percentile rankings for relative strength including a column for market capitalization"""
@@ -84,14 +84,6 @@ def rankings():
     stock_rs = {}
     ref = json[REFERENCE_TICKER]
     for ticker in json:
-        if not cfg("SP500") and json[ticker]["universe"] == "S&P 500":
-            continue
-        if not cfg("SP400") and json[ticker]["universe"] == "S&P 400":
-            continue
-        if not cfg("SP600") and json[ticker]["universe"] == "S&P 600":
-            continue
-        if not cfg("NQ100") and json[ticker]["universe"] == "Nasdaq 100":
-            continue
         try:
             closes = list(map(lambda candle: candle["close"], json[ticker]["candles"]))
             closes_ref = list(map(lambda candle: candle["close"], ref["candles"]))
