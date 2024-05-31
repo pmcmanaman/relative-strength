@@ -37,6 +37,7 @@ TITLE_TICKER = "Ticker"
 TITLE_TICKERS = "Tickers"
 TITLE_SECTOR = "Sector"
 TITLE_INDUSTRY = "Industry"
+TITLE_MCAP = "Market Cap"
 TITLE_UNIVERSE = "Universe" if not ALL_STOCKS else "Exchange"
 TITLE_PERCENTILE = "Percentile"
 TITLE_1M = "1 Month Ago"
@@ -74,7 +75,7 @@ def quarters_perf(closes: pd.Series, n):
 
 
 def rankings():
-    """Returns a dataframe with percentile rankings for relative strength"""
+    """Returns a dataframe with percentile rankings for relative strength including a column for market capitalization"""
     json = read_json(PRICE_DATA)
     relative_strengths = []
     ranks = []
@@ -96,7 +97,8 @@ def rankings():
             closes_ref = list(map(lambda candle: candle["close"], ref["candles"]))
             industry = TICKER_INFO_DICT[ticker]["info"]["industry"] if json[ticker]["industry"] == "unknown" else json[ticker]["industry"]
             sector = TICKER_INFO_DICT[ticker]["info"]["sector"] if json[ticker]["sector"] == "unknown" else json[ticker]["sector"]
-            if len(closes) >= 6*20 and industry != "n/a" and len(industry.strip()) > 0:
+            market_cap = TICKER_INFO_DICT[ticker]["info"]["marketCap"] if "marketCap" in TICKER_INFO_DICT[ticker]["info"] else "n/a"  # Assuming market cap data is available in TICKER_INFO_DICT
+            if len(closes) >= 6*20 and industry != "n/a" and market_cap != "n/a" and len(industry.strip()) > 0 and int(market_cap) > 300_000_000 and closes[-1] > 10:
                 closes_series = pd.Series(closes)
                 closes_ref_series = pd.Series(closes_ref)
                 rs = relative_strength(closes_series, closes_ref_series)
@@ -110,7 +112,7 @@ def rankings():
                 if rs < 600:
                     # stocks output
                     ranks.append(len(ranks)+1)
-                    relative_strengths.append((0, ticker, sector, industry, json[ticker]["universe"], rs, tmp_percentile, rs1m, rs3m, rs6m))
+                    relative_strengths.append((0, ticker, sector, industry, json[ticker]["universe"], rs, tmp_percentile, rs1m, rs3m, rs6m, market_cap, closes[-1]))  # Include market cap in the tuple
                     stock_rs[ticker] = rs
 
                     # industries output
@@ -135,7 +137,7 @@ def rankings():
     suffix = ''
 
     # stocks
-    df = pd.DataFrame(relative_strengths, columns=[TITLE_RANK, TITLE_TICKER, TITLE_SECTOR, TITLE_INDUSTRY, TITLE_UNIVERSE, TITLE_RS, TITLE_PERCENTILE, TITLE_1M, TITLE_3M, TITLE_6M])
+    df = pd.DataFrame(relative_strengths, columns=[TITLE_RANK, TITLE_TICKER, TITLE_SECTOR, TITLE_INDUSTRY, TITLE_UNIVERSE, TITLE_RS, TITLE_PERCENTILE, TITLE_1M, TITLE_3M, TITLE_6M, "Market Cap", "Close"])  # Include "Market Cap" column in columns list
     df[TITLE_PERCENTILE] = pd.qcut(df[TITLE_RS], 100, labels=False, duplicates="drop")
     df[TITLE_1M] = pd.qcut(df[TITLE_1M], 100, labels=False, duplicates="drop")
     df[TITLE_3M] = pd.qcut(df[TITLE_3M], 100, labels=False, duplicates="drop")
@@ -150,39 +152,6 @@ def rankings():
 
     df.to_csv(os.path.join(DIR, "output", f'rs_stocks{suffix}.csv'), index = False)
     dfs.append(df)
-
-    # industries
-    def getDfView(industry_entry):
-        return industry_entry["info"]
-    def sum(a,b):
-        return a+b
-    def getRsAverage(industries, industry, column):
-        rs = reduce(sum, industries[industry][column])/len(industries[industry][column])
-        rs = int(rs*100) / 100 # round to 2 decimals
-        return rs
-    def rs_for_stock(ticker):
-        return stock_rs[ticker]
-    def getTickers(industries, industry):
-        return ",".join(sorted(industries[industry][TITLE_TICKERS], key=rs_for_stock, reverse=True))
-
-    # remove industries with only one stock
-    filtered_industries = filter(lambda i: len(i[TITLE_TICKERS]) > 1, list(industries.values()))
-    df_industries = pd.DataFrame(map(getDfView, filtered_industries), columns=[TITLE_RANK, TITLE_INDUSTRY, TITLE_SECTOR, TITLE_RS, TITLE_PERCENTILE, TITLE_1M, TITLE_3M, TITLE_6M])
-    df_industries[TITLE_RS] = df_industries.apply(lambda row: getRsAverage(industries, row[TITLE_INDUSTRY], TITLE_RS), axis=1)
-    df_industries[TITLE_1M] = df_industries.apply(lambda row: getRsAverage(industries, row[TITLE_INDUSTRY], TITLE_1M), axis=1)
-    df_industries[TITLE_3M] = df_industries.apply(lambda row: getRsAverage(industries, row[TITLE_INDUSTRY], TITLE_3M), axis=1)
-    df_industries[TITLE_6M] = df_industries.apply(lambda row: getRsAverage(industries, row[TITLE_INDUSTRY], TITLE_6M), axis=1)
-    df_industries[TITLE_PERCENTILE] = pd.qcut(df_industries[TITLE_RS], 100, labels=False, duplicates="drop")
-    df_industries[TITLE_1M] = pd.qcut(df_industries[TITLE_1M], 100, labels=False, duplicates="drop")
-    df_industries[TITLE_3M] = pd.qcut(df_industries[TITLE_3M], 100, labels=False, duplicates="drop")
-    df_industries[TITLE_6M] = pd.qcut(df_industries[TITLE_6M], 100, labels=False, duplicates="drop")
-    df_industries[TITLE_TICKERS] = df_industries.apply(lambda row: getTickers(industries, row[TITLE_INDUSTRY]), axis=1)
-    df_industries = df_industries.sort_values(([TITLE_RS]), ascending=False)
-    ind_ranks = ind_ranks[:len(df_industries)]
-    df_industries[TITLE_RANK] = ind_ranks
-
-    df_industries.to_csv(os.path.join(DIR, "output", f'rs_industries{suffix}.csv'), index = False)
-    dfs.append(df_industries)
 
     return dfs
 

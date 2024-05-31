@@ -131,6 +131,7 @@ dmypy.json
 data/
 .vscode/
 output/
+watchlists/
 tmp/
 build/
 dist/
