@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import sys
 import pandas as pd
 import numpy as np
@@ -6,7 +7,7 @@ import os
 from datetime import date
 from scipy.stats import linregress
 import yaml
-from rs_data import TD_API, cfg, read_json
+from rs_data import cfg, read_json
 from functools import reduce
 
 DIR = os.path.dirname(os.path.realpath(__file__))
