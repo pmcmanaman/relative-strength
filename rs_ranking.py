@@ -51,6 +51,7 @@ TITLE_1M = "1 Month Ago"
 TITLE_3M = "3 Months Ago"
 TITLE_6M = "6 Months Ago"
 TITLE_RS = "Relative Strength"
+TITLE_CLOSE = "Close"
 
 if not os.path.exists("output"):
     os.makedirs("output")
@@ -143,7 +144,7 @@ def compute_relative_strength(ticker, relative_strengths):
                     market_cap,
                     closes[-1],
                 )
-            )  # Include market cap in the tuple
+            )
 
 
 def convert_to_dataframe(relative_strengths):
@@ -160,8 +161,8 @@ def convert_to_dataframe(relative_strengths):
             TITLE_1M,
             TITLE_3M,
             TITLE_6M,
-            "Market Cap",
-            "Close",
+            TITLE_MCAP,
+            TITLE_CLOSE,
         ],
     )  # Include "Market Cap" column in columns list
     df[TITLE_PERCENTILE] = pd.qcut(df[TITLE_RS], 100, labels=False, duplicates="drop")
