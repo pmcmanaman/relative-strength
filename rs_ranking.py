@@ -87,7 +87,9 @@ def rankings():
     ref = PRICE_DATA_JSON[REFERENCE_TICKER]
     for ticker in PRICE_DATA_JSON:
         try:
-            closes = list(map(lambda candle: candle["close"], PRICE_DATA_JSON[ticker]["candles"]))
+            closes = list(
+                map(lambda candle: candle["close"], PRICE_DATA_JSON[ticker]["candles"])
+            )
             closes_ref = list(map(lambda candle: candle["close"], ref["candles"]))
             industry = (
                 TICKER_INFO_DICT[ticker]["info"]["industry"]
@@ -196,6 +198,7 @@ def main():
     ranks = rankings()
     print(ranks[0])
     print("***\nYour csv is in the output folder.\n***")
+
 
 if __name__ == "__main__":
     main()
