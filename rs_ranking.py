@@ -92,14 +92,16 @@ def ticker_info(ticker, field):
         else PRICE_DATA_JSON[ticker][field]
     )
 
-def compute_relative_strength(ticker, relative_strengths): 
+
+def compute_relative_strength(ticker, relative_strengths):
     closes = list(
-                map(lambda candle: candle["close"], PRICE_DATA_JSON[ticker]["candles"])
-            )
-            
+        map(lambda candle: candle["close"], PRICE_DATA_JSON[ticker]["candles"])
+    )
+
     market_cap = (
         TICKER_INFO_JSON[ticker]["info"]["marketCap"]
-        if "marketCap" in TICKER_INFO_JSON[ticker]["info"]
+        if ticker in TICKER_INFO_JSON
+        and "marketCap" in TICKER_INFO_JSON[ticker]["info"]
         else "n/a"
     )
 
@@ -188,10 +190,7 @@ def compute_relative_strengths():
     """Returns a dataframe with percentile rankings for relative strength including a column for market capitalization"""
     relative_strengths = []
     for ticker in PRICE_DATA_JSON:
-        try:
-            compute_relative_strength(ticker, relative_strengths)
-        except KeyError:
-            print(f"Ticker {ticker} has invalid data")
+        compute_relative_strength(ticker, relative_strengths)
 
     return relative_strengths
 
