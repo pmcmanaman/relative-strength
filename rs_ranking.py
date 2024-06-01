@@ -69,7 +69,7 @@ def strength(closes: pd.Series):
 def quarters_perf(closes: pd.Series, n):
     if len(closes) < (n * int(252/4)):
         return 0;
-    
+
     start_price = closes.iloc[-n * int(252/4)]  # Price 'n' quarters ago
     end_price = closes.iloc[-1]  # Price at the end of the period
     return (end_price / start_price) - 1  # Percentage change in price over the period
@@ -79,8 +79,6 @@ def rankings():
     json = read_json(PRICE_DATA)
     relative_strengths = []
     ranks = []
-    industries = {}
-    ind_ranks = []
     stock_rs = {}
     ref = json[REFERENCE_TICKER]
     for ticker in json:
@@ -101,30 +99,13 @@ def rankings():
                 rs6m = relative_strength(closes_series.head(-6*month), closes_ref_series.head(-6*month))
 
                 # if rs is too big assume there is faulty price data
-                if rs < 600:
+                if rs < 12_000:
                     # stocks output
                     ranks.append(len(ranks)+1)
                     relative_strengths.append((0, ticker, sector, industry, json[ticker]["universe"], rs, tmp_percentile, rs1m, rs3m, rs6m, market_cap, closes[-1]))  # Include market cap in the tuple
                     stock_rs[ticker] = rs
-
-                    # industries output
-                    if industry not in industries:
-                        industries[industry] = {
-                            "info": (0, industry, sector, 0, 99, 1, 3, 6),
-                            TITLE_RS: [],
-                            TITLE_1M: [],
-                            TITLE_3M: [],
-                            TITLE_6M: [],
-                            TITLE_TICKERS: []
-                        }
-                        ind_ranks.append(len(ind_ranks)+1)
-                    industries[industry][TITLE_RS].append(rs)
-                    industries[industry][TITLE_1M].append(rs1m)
-                    industries[industry][TITLE_3M].append(rs3m)
-                    industries[industry][TITLE_6M].append(rs6m)
-                    industries[industry][TITLE_TICKERS].append(ticker)
         except KeyError:
-            print(f'Ticker {ticker} has corrupted data.')
+            print(f'Ticker {ticker} has invalid data')
     dfs = []
     suffix = ''
 
