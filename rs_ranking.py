@@ -92,67 +92,65 @@ def ticker_info(ticker, field):
         else PRICE_DATA_JSON[ticker][field]
     )
 
+def compute_relative_strength(ticker, relative_strengths): 
+    closes = list(
+                map(lambda candle: candle["close"], PRICE_DATA_JSON[ticker]["candles"])
+            )
+            
+    market_cap = (
+        TICKER_INFO_JSON[ticker]["info"]["marketCap"]
+        if "marketCap" in TICKER_INFO_JSON[ticker]["info"]
+        else "n/a"
+    )
+
+    if (
+        len(closes) >= 6 * 20
+        and market_cap != "n/a"
+        and int(market_cap) > 300_000_000
+        and closes[-1] > 10
+    ):
+        closes_series = pd.Series(closes)
+        rs = relative_strength(closes_series, REFERENCE_PRICE_SERIES)
+        month = 20
+        tmp_percentile = 100
+        rs1m = relative_strength(
+            closes_series.head(-1 * month), REFERENCE_PRICE_SERIES.head(-1 * month)
+        )
+        rs3m = relative_strength(
+            closes_series.head(-3 * month), REFERENCE_PRICE_SERIES.head(-3 * month)
+        )
+        rs6m = relative_strength(
+            closes_series.head(-6 * month), REFERENCE_PRICE_SERIES.head(-6 * month)
+        )
+
+        # if rs is too big assume there is faulty price data
+        if rs < 600:
+            # stocks output
+            relative_strengths.append(
+                (
+                    0,
+                    ticker,
+                    ticker_info(ticker, "sector"),
+                    ticker_info(ticker, "industry"),
+                    PRICE_DATA_JSON[ticker]["universe"],
+                    rs,
+                    tmp_percentile,
+                    rs1m,
+                    rs3m,
+                    rs6m,
+                    market_cap,
+                    closes[-1],
+                )
+            )  # Include market cap in the tuple
 
 def rankings():
     """Returns a dataframe with percentile rankings for relative strength including a column for market capitalization"""
     relative_strengths = []
-    stock_rs = {}
     for ticker in PRICE_DATA_JSON:
         try:
-            closes = list(
-                map(lambda candle: candle["close"], PRICE_DATA_JSON[ticker]["candles"])
-            )
-            
-            market_cap = (
-                TICKER_INFO_JSON[ticker]["info"]["marketCap"]
-                if "marketCap" in TICKER_INFO_JSON[ticker]["info"]
-                else "n/a"
-            )
-            if (
-                len(closes) >= 6 * 20
-                and market_cap != "n/a"
-                and int(market_cap) > 300_000_000
-                and closes[-1] > 10
-            ):
-                closes_series = pd.Series(closes)
-                
-                rs = relative_strength(closes_series, REFERENCE_PRICE_SERIES)
-                month = 20
-                tmp_percentile = 100
-                rs1m = relative_strength(
-                    closes_series.head(-1 * month), REFERENCE_PRICE_SERIES.head(-1 * month)
-                )
-                rs3m = relative_strength(
-                    closes_series.head(-3 * month), REFERENCE_PRICE_SERIES.head(-3 * month)
-                )
-                rs6m = relative_strength(
-                    closes_series.head(-6 * month), REFERENCE_PRICE_SERIES.head(-6 * month)
-                )
-
-                # if rs is too big assume there is faulty price data
-                if rs < 12_000:
-                    # stocks output
-                    relative_strengths.append(
-                        (
-                            0,
-                            ticker,
-                            ticker_info(ticker, "sector"),
-                            ticker_info(ticker, "industry"),
-                            PRICE_DATA_JSON[ticker]["universe"],
-                            rs,
-                            tmp_percentile,
-                            rs1m,
-                            rs3m,
-                            rs6m,
-                            market_cap,
-                            closes[-1],
-                        )
-                    )  # Include market cap in the tuple
-                    stock_rs[ticker] = rs
+            compute_relative_strength(ticker, relative_strengths)
         except KeyError:
             print(f"Ticker {ticker} has invalid data")
-    dfs = []
-    suffix = ""
 
     # stocks
     df = pd.DataFrame(
@@ -188,9 +186,8 @@ def rankings():
         os.path.join(DIR, "output", f'rs_stocks_{date.today().strftime("%Y%m%d")}.csv'),
         index=False,
     )
-    dfs.append(df)
 
-    return dfs
+    return df
 
 
 def main():
