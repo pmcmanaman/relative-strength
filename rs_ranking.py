@@ -25,6 +25,7 @@ except yaml.YAMLError as exc:
     print(exc)
 
 PRICE_DATA = os.path.join(DIR, "data", "price_history.json")
+PRICE_DATA_JSON = read_json(PRICE_DATA)
 MIN_PERCENTILE = cfg("MIN_PERCENTILE")
 POS_COUNT_TARGET = cfg("POSITIONS_COUNT_TARGET")
 REFERENCE_TICKER = cfg("REFERENCE_TICKER")
@@ -80,24 +81,23 @@ def quarters_perf(closes: pd.Series, n):
 
 def rankings():
     """Returns a dataframe with percentile rankings for relative strength including a column for market capitalization"""
-    json = read_json(PRICE_DATA)
     relative_strengths = []
     ranks = []
     stock_rs = {}
-    ref = json[REFERENCE_TICKER]
-    for ticker in json:
+    ref = PRICE_DATA_JSON[REFERENCE_TICKER]
+    for ticker in PRICE_DATA_JSON:
         try:
-            closes = list(map(lambda candle: candle["close"], json[ticker]["candles"]))
+            closes = list(map(lambda candle: candle["close"], PRICE_DATA_JSON[ticker]["candles"]))
             closes_ref = list(map(lambda candle: candle["close"], ref["candles"]))
             industry = (
                 TICKER_INFO_DICT[ticker]["info"]["industry"]
-                if json[ticker]["industry"] == "unknown"
-                else json[ticker]["industry"]
+                if PRICE_DATA_JSON[ticker]["industry"] == "unknown"
+                else PRICE_DATA_JSON[ticker]["industry"]
             )
             sector = (
                 TICKER_INFO_DICT[ticker]["info"]["sector"]
-                if json[ticker]["sector"] == "unknown"
-                else json[ticker]["sector"]
+                if PRICE_DATA_JSON[ticker]["sector"] == "unknown"
+                else PRICE_DATA_JSON[ticker]["sector"]
             )
             market_cap = (
                 TICKER_INFO_DICT[ticker]["info"]["marketCap"]
@@ -137,7 +137,7 @@ def rankings():
                             ticker,
                             sector,
                             industry,
-                            json[ticker]["universe"],
+                            PRICE_DATA_JSON[ticker]["universe"],
                             rs,
                             tmp_percentile,
                             rs1m,
@@ -192,13 +192,10 @@ def rankings():
     return dfs
 
 
-def main(skipEnter=False):
+def main():
     ranks = rankings()
     print(ranks[0])
-    print("***\nYour 'rs_stocks.csv' is in the output folder.\n***")
-    if not skipEnter and cfg("EXIT_WAIT_FOR_ENTER"):
-        input("Press Enter key to exit...")
-
+    print("***\nYour csv is in the output folder.\n***")
 
 if __name__ == "__main__":
     main()
