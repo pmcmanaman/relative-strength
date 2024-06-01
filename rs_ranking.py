@@ -143,16 +143,8 @@ def compute_relative_strength(ticker, relative_strengths):
                 )
             )  # Include market cap in the tuple
 
-def rankings():
-    """Returns a dataframe with percentile rankings for relative strength including a column for market capitalization"""
-    relative_strengths = []
-    for ticker in PRICE_DATA_JSON:
-        try:
-            compute_relative_strength(ticker, relative_strengths)
-        except KeyError:
-            print(f"Ticker {ticker} has invalid data")
 
-    # stocks
+def convert_to_dataframe(relative_strengths):
     df = pd.DataFrame(
         relative_strengths,
         columns=[
@@ -176,23 +168,38 @@ def rankings():
     df[TITLE_6M] = pd.qcut(df[TITLE_6M], 100, labels=False, duplicates="drop")
     df = df.sort_values(([TITLE_RS]), ascending=False)
     df[TITLE_RANK] = list(range(1, len(relative_strengths) + 1))
-    out_tickers_count = 0
+    return df
+
+
+def write_csv(df):
+    qualifying_tickers = 0
     for index, row in df.iterrows():
         if row[TITLE_PERCENTILE] >= MIN_PERCENTILE:
-            out_tickers_count = out_tickers_count + 1
-    df = df.head(out_tickers_count)
+            qualifying_tickers = qualifying_tickers + 1
+    df = df.head(qualifying_tickers)
 
     df.to_csv(
         os.path.join(DIR, "output", f'rs_stocks_{date.today().strftime("%Y%m%d")}.csv'),
         index=False,
     )
 
-    return df
+
+def compute_relative_strengths():
+    """Returns a dataframe with percentile rankings for relative strength including a column for market capitalization"""
+    relative_strengths = []
+    for ticker in PRICE_DATA_JSON:
+        try:
+            compute_relative_strength(ticker, relative_strengths)
+        except KeyError:
+            print(f"Ticker {ticker} has invalid data")
+
+    return relative_strengths
 
 
 def main():
-    ranks = rankings()
-    # print(ranks[0])
+    relative_strengths = compute_relative_strengths()
+    df = convert_to_dataframe(relative_strengths)
+    write_csv(df)
     print("***\nYour csv is in the output folder.\n***")
 
 
