@@ -82,7 +82,6 @@ def quarters_perf(closes: pd.Series, n):
 def rankings():
     """Returns a dataframe with percentile rankings for relative strength including a column for market capitalization"""
     relative_strengths = []
-    ranks = []
     stock_rs = {}
     ref = PRICE_DATA_JSON[REFERENCE_TICKER]
     for ticker in PRICE_DATA_JSON:
@@ -132,7 +131,6 @@ def rankings():
                 # if rs is too big assume there is faulty price data
                 if rs < 12_000:
                     # stocks output
-                    ranks.append(len(ranks) + 1)
                     relative_strengths.append(
                         (
                             0,
@@ -178,7 +176,7 @@ def rankings():
     df[TITLE_3M] = pd.qcut(df[TITLE_3M], 100, labels=False, duplicates="drop")
     df[TITLE_6M] = pd.qcut(df[TITLE_6M], 100, labels=False, duplicates="drop")
     df = df.sort_values(([TITLE_RS]), ascending=False)
-    df[TITLE_RANK] = ranks
+    df[TITLE_RANK] = list(range(1, len(relative_strengths) + 1))
     out_tickers_count = 0
     for index, row in df.iterrows():
         if row[TITLE_PERCENTILE] >= MIN_PERCENTILE:
@@ -196,7 +194,7 @@ def rankings():
 
 def main():
     ranks = rankings()
-    print(ranks[0])
+    # print(ranks[0])
     print("***\nYour csv is in the output folder.\n***")
 
 
