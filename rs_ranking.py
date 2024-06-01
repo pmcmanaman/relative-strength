@@ -27,11 +27,17 @@ except yaml.YAMLError as exc:
 PRICE_DATA = os.path.join(DIR, "data", "price_history.json")
 PRICE_DATA_JSON = read_json(PRICE_DATA)
 MIN_PERCENTILE = cfg("MIN_PERCENTILE")
-POS_COUNT_TARGET = cfg("POSITIONS_COUNT_TARGET")
-REFERENCE_TICKER = cfg("REFERENCE_TICKER")
 ALL_STOCKS = cfg("USE_ALL_LISTED_STOCKS")
 TICKER_INFO_FILE = os.path.join(DIR, "data_persist", "ticker_info.json")
-TICKER_INFO_DICT = read_json(TICKER_INFO_FILE)
+TICKER_INFO_JSON = read_json(TICKER_INFO_FILE)
+REFERENCE_TICKER = cfg("REFERENCE_TICKER")
+REFERENCE_PRICE_SERIES = pd.Series(
+    list(
+        map(
+            lambda candle: candle["close"], PRICE_DATA_JSON[REFERENCE_TICKER]["candles"]
+        )
+    )
+)
 
 TITLE_RANK = "Rank"
 TITLE_TICKER = "Ticker"
@@ -79,53 +85,48 @@ def quarters_perf(closes: pd.Series, n):
     return (end_price / start_price) - 1  # Percentage change in price over the period
 
 
+def ticker_info(ticker, field):
+    return (
+        TICKER_INFO_JSON[ticker]["info"][field]
+        if PRICE_DATA_JSON[ticker][field] == "unknown"
+        else PRICE_DATA_JSON[ticker][field]
+    )
+
+
 def rankings():
     """Returns a dataframe with percentile rankings for relative strength including a column for market capitalization"""
     relative_strengths = []
     stock_rs = {}
-    ref = PRICE_DATA_JSON[REFERENCE_TICKER]
     for ticker in PRICE_DATA_JSON:
         try:
             closes = list(
                 map(lambda candle: candle["close"], PRICE_DATA_JSON[ticker]["candles"])
             )
-            closes_ref = list(map(lambda candle: candle["close"], ref["candles"]))
-            industry = (
-                TICKER_INFO_DICT[ticker]["info"]["industry"]
-                if PRICE_DATA_JSON[ticker]["industry"] == "unknown"
-                else PRICE_DATA_JSON[ticker]["industry"]
-            )
-            sector = (
-                TICKER_INFO_DICT[ticker]["info"]["sector"]
-                if PRICE_DATA_JSON[ticker]["sector"] == "unknown"
-                else PRICE_DATA_JSON[ticker]["sector"]
-            )
+            
             market_cap = (
-                TICKER_INFO_DICT[ticker]["info"]["marketCap"]
-                if "marketCap" in TICKER_INFO_DICT[ticker]["info"]
+                TICKER_INFO_JSON[ticker]["info"]["marketCap"]
+                if "marketCap" in TICKER_INFO_JSON[ticker]["info"]
                 else "n/a"
-            )  # Assuming market cap data is available in TICKER_INFO_DICT
+            )
             if (
                 len(closes) >= 6 * 20
-                and industry != "n/a"
                 and market_cap != "n/a"
-                and len(industry.strip()) > 0
                 and int(market_cap) > 300_000_000
                 and closes[-1] > 10
             ):
                 closes_series = pd.Series(closes)
-                closes_ref_series = pd.Series(closes_ref)
-                rs = relative_strength(closes_series, closes_ref_series)
+                
+                rs = relative_strength(closes_series, REFERENCE_PRICE_SERIES)
                 month = 20
                 tmp_percentile = 100
                 rs1m = relative_strength(
-                    closes_series.head(-1 * month), closes_ref_series.head(-1 * month)
+                    closes_series.head(-1 * month), REFERENCE_PRICE_SERIES.head(-1 * month)
                 )
                 rs3m = relative_strength(
-                    closes_series.head(-3 * month), closes_ref_series.head(-3 * month)
+                    closes_series.head(-3 * month), REFERENCE_PRICE_SERIES.head(-3 * month)
                 )
                 rs6m = relative_strength(
-                    closes_series.head(-6 * month), closes_ref_series.head(-6 * month)
+                    closes_series.head(-6 * month), REFERENCE_PRICE_SERIES.head(-6 * month)
                 )
 
                 # if rs is too big assume there is faulty price data
@@ -135,8 +136,8 @@ def rankings():
                         (
                             0,
                             ticker,
-                            sector,
-                            industry,
+                            ticker_info(ticker, "sector"),
+                            ticker_info(ticker, "industry"),
                             PRICE_DATA_JSON[ticker]["universe"],
                             rs,
                             tmp_percentile,
