@@ -11,8 +11,8 @@ def create_ticker_lists_by_sector(input_csv, output_dir):
 
         # Process each row in the CSV file
         for row in reader:
-            sector = row['Sector']
-            industry = row['Industry'].replace(',', '')
+            sector = row['Sector'].replace('/', '')
+            industry = row['Industry'].replace(',', '').replace('/', '')
             exchange = row['Exchange']
             if exchange == "NYSE MKT":
                 exchange = "AMEX"
@@ -35,6 +35,6 @@ def create_ticker_lists_by_sector(input_csv, output_dir):
         print(f"Ticker list for {sector} has been created successfully at {output_txt}.")
 
 if __name__ == "__main__":
-    input_csv = 'output/rs_stocks.csv'  # Replace with the path to your CSV file
-    output_dir = 'watchlists'  # Replace with the desired output directory
+    input_csv = "output/rs_stocks_90th_percentile_screened_20240601.csv"  # Replace with the path to your CSV file
+    output_dir = 'watchlists/90th_percentile'  # Replace with the desired output directory
     create_ticker_lists_by_sector(input_csv, output_dir)

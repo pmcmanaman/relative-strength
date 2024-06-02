@@ -102,10 +102,7 @@ def compute_relative_strength(ticker, relative_strengths):
     )
 
     if (
-        len(closes) >= 6 * 20
-        and market_cap != "n/a"
-        and int(market_cap) > 300_000_000
-        and closes[-1] > 10
+        len(closes) >= 200
     ):
         closes_series = pd.Series(closes)
         rs = relative_strength(closes_series, REFERENCE_PRICE_SERIES)
@@ -142,6 +139,37 @@ def compute_relative_strength(ticker, relative_strengths):
             )
 
 
+def compute_technicals(ticker):
+    price_data = PRICE_DATA_JSON[ticker]
+    candles = price_data["candles"][-252:]
+    closes = [candle["close"] for candle in candles]
+    return {
+        "close": closes[-1],
+        "21_day_ema": ema(closes, 21),
+        "50_day_sma": sma(closes, 50),
+        "100_day_sma": sma(closes, 100),
+        "200_day_sma": sma(closes, 200),
+        "52_week_high": max([candle["high"] for candle in candles]),
+        "52_week_low": min([candle["low"] for candle in candles])
+    }
+
+
+def sma(closes, N):
+    if len(closes) < N:
+        return None  # Not enough data points to compute SMA
+    return sum(closes[-N:]) / N
+
+
+def ema(closes, N):
+    if len(closes) < N:
+        return None  # Not enough data points to compute EMA
+    multiplier = 2 / (N + 1)
+    ema = closes[0]
+    for price in closes[1:]:
+        ema = (price - ema) * multiplier + ema
+    return ema
+
+
 def convert_to_dataframe(relative_strengths):
     df = pd.DataFrame(
         relative_strengths,
@@ -169,15 +197,14 @@ def convert_to_dataframe(relative_strengths):
     return df
 
 
-def write_csv(df):
-    qualifying_tickers = 0
-    for index, row in df.iterrows():
-        if row[TITLE_PERCENTILE] >= MIN_PERCENTILE:
-            qualifying_tickers = qualifying_tickers + 1
-    df = df.head(qualifying_tickers)
+def write_csv(df, filename, percentile_min, percentile_max):
+    filtered_df = df[
+        (df[TITLE_PERCENTILE] >= percentile_min)
+        & (df[TITLE_PERCENTILE] <= percentile_max)
+    ]
 
-    df.to_csv(
-        os.path.join(DIR, "output", f'rs_stocks_{date.today().strftime("%Y%m%d")}.csv'),
+    filtered_df.to_csv(
+        os.path.join(DIR, "output", filename),
         index=False,
     )
 
@@ -191,11 +218,101 @@ def compute_relative_strengths():
     return relative_strengths
 
 
+def screen_dataframe(df, passing_tickers):
+    # Filter the DataFrame to include only passing tickers
+    df_filtered = df[df[TITLE_TICKER].isin(passing_tickers)]
+    return df_filtered
+
+
+def screened_tickers():
+    screened_tickers = []
+    for ticker in PRICE_DATA_JSON:
+        if len(PRICE_DATA_JSON[ticker]["candles"]) >= 200:
+            technicals = compute_technicals(ticker)
+            if meets_technical_requirements(technicals):
+                screened_tickers.append(ticker)
+
+    return screened_tickers
+
+
+def meets_technical_requirements(technicals):
+    closing_price = technicals["close"]
+    sma_100 = technicals["100_day_sma"]
+    sma_200 = technicals["200_day_sma"]
+    sma_50 = technicals["50_day_sma"]
+    ema_21 = technicals["21_day_ema"]
+    high_52_week = technicals["52_week_high"]
+    low_52_week = technicals["52_week_low"]
+
+    # Check if closing price is within -25% of the 52-week high
+    if closing_price >= 0.75 * high_52_week:
+        # Check if price is greater than 30% over the 52-week low
+        if closing_price > 1.3 * low_52_week:
+            # Check if 100-day SMA is greater than 200-day SMA
+            if sma_100 > sma_200:
+                # Check if 50-day SMA is greater than 100-day SMA
+                if sma_50 > sma_100:
+                    # Check if closing price is within -10% of the 50-day SMA
+                    if closing_price >= 0.9 * sma_50:
+                        # Check if closing price is within -7% of the 21-day EMA
+                        if closing_price >= 0.93 * ema_21:
+                            # Check if latest price is greater than 12 dollars
+                            if closing_price > 12:
+                                # Check if latest price is greater than 200-day SMA
+                                if closing_price > sma_200:
+                                    return True
+
+    return False
+
+
+def compute_technicals(ticker):
+    price_data = PRICE_DATA_JSON[ticker]
+    candles = price_data["candles"][-252:]
+    closes = [candle["close"] for candle in candles]
+    return {
+        "close": closes[-1],
+        "21_day_ema": ema(closes, 21),
+        "50_day_sma": sma(closes, 50),
+        "100_day_sma": sma(closes, 100),
+        "200_day_sma": sma(closes, 200),
+        "52_week_high": max([candle["high"] for candle in candles]),
+        "52_week_low": min([candle["low"] for candle in candles]),
+    }
+
+
+def sma(closes, N):
+    if len(closes) < N:
+        return None  # Not enough data points to compute SMA
+    return sum(closes[-N:]) / N
+
+
+def ema(closes, N):
+    if len(closes) < N:
+        return None  # Not enough data points to compute EMA
+    multiplier = 2 / (N + 1)
+    ema = closes[0]
+    for price in closes[1:]:
+        ema = (price - ema) * multiplier + ema
+    return ema
+
+
 def main():
     relative_strengths = compute_relative_strengths()
     df = convert_to_dataframe(relative_strengths)
-    write_csv(df)
-    print("***\nYour csv is in the output folder.\n***")
+    df_screened = screen_dataframe(df, screened_tickers())
+
+    write_csv(df, f'rs_stocks_raw_{date.today().strftime("%Y%m%d")}.csv', 69, 99)
+
+    write_csv(df, f'rs_stocks_90th_percentile_raw_{date.today().strftime("%Y%m%d")}.csv', 89, 99)
+    write_csv(df_screened, f'rs_stocks_90th_percentile_screened_{date.today().strftime("%Y%m%d")}.csv', 89, 99)
+    
+    write_csv(df, f'rs_stocks_80th_percentile_raw_{date.today().strftime("%Y%m%d")}.csv', 79, 89)
+    write_csv(df_screened, f'rs_stocks_80th_percentile_screened_{date.today().strftime("%Y%m%d")}.csv', 79, 89)
+
+    write_csv(df, f'rs_stocks_70th_percentile_raw_{date.today().strftime("%Y%m%d")}.csv', 69, 79)
+    write_csv(df_screened, f'rs_stocks_70th_percentile_screened_{date.today().strftime("%Y%m%d")}.csv', 69, 79)
+
+    print("***\nYour csvs are in the output folder.\n***")
 
 
 if __name__ == "__main__":
