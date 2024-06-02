@@ -38,7 +38,7 @@ def create_ticker_lists_by_sector(input_csvs, output_dir):
 
         # Write tickers to separate files for each sector
         for sector, industries in sector_industry_tickers.items():
-            output_txt = os.path.join(percentile_output_dir, f"{sector}.txt")
+            output_txt = os.path.join(percentile_output_dir, f"00 - RS {percentile} Percentile {sector}.txt")
             with open(output_txt, "w") as txtfile:
                 # Write tickers organized by industry
                 for industry, tickers in sorted(industries.items()):
