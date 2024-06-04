@@ -101,9 +101,7 @@ def compute_relative_strength(ticker, relative_strengths):
         else "n/a"
     )
 
-    if (
-        len(closes) >= 200
-    ):
+    if len(closes) >= 200:
         closes_series = pd.Series(closes)
         rs = relative_strength(closes_series, REFERENCE_PRICE_SERIES)
         month = 20
@@ -150,7 +148,7 @@ def compute_technicals(ticker):
         "100_day_sma": sma(closes, 100),
         "200_day_sma": sma(closes, 200),
         "52_week_high": max([candle["high"] for candle in candles]),
-        "52_week_low": min([candle["low"] for candle in candles])
+        "52_week_low": min([candle["low"] for candle in candles]),
     }
 
 
@@ -301,16 +299,7 @@ def main():
     df = convert_to_dataframe(relative_strengths)
     df_screened = screen_dataframe(df, screened_tickers())
 
-    write_csv(df, f'rs_stocks_raw_{date.today().strftime("%Y%m%d")}.csv', 69, 99)
-
-    write_csv(df, f'rs_stocks_90th_percentile_raw_{date.today().strftime("%Y%m%d")}.csv', 89, 99)
-    write_csv(df_screened, f'rs_stocks_90th_percentile_screened_{date.today().strftime("%Y%m%d")}.csv', 89, 99)
-    
-    write_csv(df, f'rs_stocks_80th_percentile_raw_{date.today().strftime("%Y%m%d")}.csv', 79, 89)
-    write_csv(df_screened, f'rs_stocks_80th_percentile_screened_{date.today().strftime("%Y%m%d")}.csv', 79, 89)
-
-    write_csv(df, f'rs_stocks_70th_percentile_raw_{date.today().strftime("%Y%m%d")}.csv', 69, 79)
-    write_csv(df_screened, f'rs_stocks_70th_percentile_screened_{date.today().strftime("%Y%m%d")}.csv', 69, 79)
+    write_csv(df, f'rs_stocks_{date.today().strftime("%Y%m%d")}.csv', 69, 99)
 
     print("***\nYour csvs are in the output folder.\n***")
 
