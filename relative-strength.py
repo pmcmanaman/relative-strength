@@ -1,17 +1,36 @@
 #!/usr/bin/env python
+import rs_ticker_info
 import rs_data
 import rs_ranking
+import rs_stock_screener
+import rs_watchlist
+import argparse
 import sys
 
+
 def main():
-   skipEnter = None if len(sys.argv) <= 1 else sys.argv[1]
-   forceTDA = None if len(sys.argv) <= 2 else sys.argv[2]
-   api_key = None if len(sys.argv) <= 3 else sys.argv[3]
-   if api_key:
-      rs_data.main(forceTDA=="true", api_key)
-   else:
-      rs_data.main(forceTDA=="true")
-   rs_ranking.main(skipEnter=="true")
+    parser = argparse.ArgumentParser(description="Process stock screening parameters.")
+    parser.add_argument(
+        "pct_min", type=int, nargs="?", default=90, help="Minimum percentile"
+    )
+    parser.add_argument(
+        "pct_max", type=int, nargs="?", default=99, help="Maximum percentile"
+    )
+    parser.add_argument(
+        "watchlist_prefix", type=int, nargs="?", default=100, help="Watchlist prefix"
+    )
+
+    args = parser.parse_args()
+    pct_min = args.pct_min - 1
+    pct_max = args.pct_max - 1
+    prefix = args.watchlist_prefix
+
+    rs_ticker_info.main()
+    rs_data.main()
+    rs_ranking.main()
+    rs_stock_screener.main(pct_min, pct_max)
+    rs_watchlist.maiin(pct_min, prefix)
+
 
 if __name__ == "__main__":
-   main()
+    main()

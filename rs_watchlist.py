@@ -2,10 +2,12 @@
 
 import csv
 import os
+import argparse
 from collections import defaultdict
+from datetime import date
 
 
-def create_ticker_lists_by_sector(input_csvs, output_dir):
+def create_ticker_lists_by_sector(input_csvs, percentile, output_dir):
     # Process each input CSV file
     for input_csv in input_csvs:
         # Read the CSV file
@@ -28,9 +30,6 @@ def create_ticker_lists_by_sector(input_csvs, output_dir):
                 # Add ticker to the defaultdict
                 sector_industry_tickers[sector][industry].append(ticker_entry)
 
-        # Get the percentile from the input CSV file name
-        percentile = os.path.splitext(os.path.basename(input_csv))[0].split("_")[2]
-
         # Create output directory for the current percentile if it doesn't exist
         percentile_output_dir = os.path.join(output_dir, f"{percentile}_percentile")
         if not os.path.exists(percentile_output_dir):
@@ -38,7 +37,9 @@ def create_ticker_lists_by_sector(input_csvs, output_dir):
 
         # Write tickers to separate files for each sector
         for sector, industries in sector_industry_tickers.items():
-            output_txt = os.path.join(percentile_output_dir, f"00 - RS {percentile} Percentile {sector}.txt")
+            output_txt = os.path.join(
+                percentile_output_dir, f"90 - RS {percentile} Percentile {sector}.txt"
+            )
             with open(output_txt, "w") as txtfile:
                 # Write tickers organized by industry
                 for industry, tickers in sorted(industries.items()):
@@ -50,11 +51,18 @@ def create_ticker_lists_by_sector(input_csvs, output_dir):
             )
 
 
-if __name__ == "__main__":
+def main(pct_min):
+    percentile = f"{pct_min}th"
+
+    args = parser.parse_args()
+    percentile = args.percentile
+
     input_csvs = [
-        "output/rs_stocks_70th_percentile_screened_20240601.csv",
-        "output/rs_stocks_80th_percentile_screened_20240601.csv",
-        "output/rs_stocks_90th_percentile_screened_20240601.csv",
+        f'output/screened/rs_stocks_screened_{date.today().strftime("%Y%m%d")}.csv'
     ]
     output_dir = "watchlists"  # Replace with the desired output directory
-    create_ticker_lists_by_sector(input_csvs, output_dir)
+    create_ticker_lists_by_sector(input_csvs, percentile, output_dir)
+
+
+if __name__ == "__main__":
+    main()
