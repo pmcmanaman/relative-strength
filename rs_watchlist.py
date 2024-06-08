@@ -7,7 +7,7 @@ from collections import defaultdict
 from datetime import date
 
 
-def create_ticker_lists_by_sector(input_csvs, percentile, output_dir):
+def create_ticker_lists_by_sector(input_csvs, percentile, prefix, output_dir):
     # Process each input CSV file
     for input_csv in input_csvs:
         # Read the CSV file
@@ -38,7 +38,8 @@ def create_ticker_lists_by_sector(input_csvs, percentile, output_dir):
         # Write tickers to separate files for each sector
         for sector, industries in sector_industry_tickers.items():
             output_txt = os.path.join(
-                percentile_output_dir, f"90 - RS {percentile} Percentile {sector}.txt"
+                percentile_output_dir,
+                f"{prefix} - RS {percentile}th Percentile {sector}.txt",
             )
             with open(output_txt, "w") as txtfile:
                 # Write tickers organized by industry
@@ -51,17 +52,12 @@ def create_ticker_lists_by_sector(input_csvs, percentile, output_dir):
             )
 
 
-def main(pct_min):
-    percentile = f"{pct_min}th"
-
-    args = parser.parse_args()
-    percentile = args.percentile
-
+def main(pct_min, prefix):
     input_csvs = [
         f'output/screened/rs_stocks_screened_{date.today().strftime("%Y%m%d")}.csv'
     ]
     output_dir = "watchlists"  # Replace with the desired output directory
-    create_ticker_lists_by_sector(input_csvs, percentile, output_dir)
+    create_ticker_lists_by_sector(input_csvs, pct_min, prefix, output_dir)
 
 
 if __name__ == "__main__":
