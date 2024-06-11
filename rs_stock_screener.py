@@ -33,30 +33,30 @@ def run_stock_screener():
 
 
 def meets_technical_requirements(technicals):
-    closing_price = technicals["close"]
-    sma_100 = technicals["100_day_sma"]
-    sma_200 = technicals["200_day_sma"]
-    sma_50 = technicals["50_day_sma"]
-    ema_21 = technicals["21_day_ema"]
-    high_52_week = technicals["52_week_high"]
-    low_52_week = technicals["52_week_low"]
+    closing_price = technicals.get("close")
+    sma_100 = technicals.get("100_day_sma")
+    sma_200 = technicals.get("200_day_sma")
+    sma_50 = technicals.get("50_day_sma")
+    ema_21 = technicals.get("21_day_ema")
+    high_52_week = technicals.get("52_week_high")
+    low_52_week = technicals.get("52_week_low")
 
     # Check if closing price is within -25% of the 52-week high
-    if closing_price >= 0.75 * high_52_week:
+    if high_52_week is None or closing_price >= 0.75 * high_52_week:
         # Check if price is greater than 30% over the 52-week low
-        if closing_price > 1.3 * low_52_week:
+        if low_52_week is None or closing_price > 1.3 * low_52_week:
             # Check if 100-day SMA is greater than 200-day SMA
-            if sma_100 > sma_200:
+            if sma_100 is None or sma_200 is None or sma_100 > sma_200:
                 # Check if 50-day SMA is greater than 100-day SMA
-                if sma_50 > sma_100:
+                if sma_50 is None or sma_100 is None or sma_50 > sma_100:
                     # Check if closing price is within -10% of the 50-day SMA
-                    if closing_price >= 0.9 * sma_50:
+                    if sma_50 is None or closing_price >= 0.9 * sma_50:
                         # Check if closing price is within -7% of the 21-day EMA
-                        if closing_price >= 0.93 * ema_21:
+                        if ema_21 is None or closing_price >= 0.93 * ema_21:
                             # Check if latest price is greater than 12 dollars
                             if closing_price > 8:
                                 # Check if latest price is greater than 200-day SMA
-                                if closing_price > sma_200:
+                                if sma_200 is None or closing_price > sma_200:
                                     return True
 
     return False

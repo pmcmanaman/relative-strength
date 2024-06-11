@@ -3,6 +3,7 @@ import json
 import os
 import yaml
 import yfinance as yf
+import re
 from ftplib import FTP
 from io import StringIO
 
