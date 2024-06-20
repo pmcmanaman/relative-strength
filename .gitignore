@@ -128,11 +128,9 @@ dmypy.json
 .pyre/
 
 # Custom
-data/
 .vscode/
-output/
-watchlists/
 tmp/
 build/
 dist/
+data/
 config_private.yaml

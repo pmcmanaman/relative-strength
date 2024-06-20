@@ -1,17 +1,21 @@
 #!/usr/bin/env python
+import rs_ticker_info
 import rs_data
+import rs_mvp
 import rs_ranking
+import rs_stock_screener
+import rs_watchlist
+import argparse
 import sys
 
+
 def main():
-   skipEnter = None if len(sys.argv) <= 1 else sys.argv[1]
-   forceTDA = None if len(sys.argv) <= 2 else sys.argv[2]
-   api_key = None if len(sys.argv) <= 3 else sys.argv[3]
-   if api_key:
-      rs_data.main(forceTDA=="true", api_key)
-   else:
-      rs_data.main(forceTDA=="true")
-   rs_ranking.main(skipEnter=="true")
+    # rs_ticker_info.main()
+    # rs_data.main()
+    rs_ranking.main()
+    rs_stock_screener.main(79, 99)
+    rs_watchlist.main(79, 90)
+
 
 if __name__ == "__main__":
-   main()
+    main()
