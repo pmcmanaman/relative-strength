@@ -36,7 +36,16 @@ def create_ticker_lists_by_sector(input_csvs, percentile, prefix, output_dir):
         if not os.path.exists(percentile_output_dir):
             os.makedirs(percentile_output_dir)
 
-        # Determine the file name based on the input file
+        # Write tickers organized by sector and industry to separate files
+        for sector, industries in sector_industry_tickers.items():
+            sector_filename = f"{prefix} - RS {sector}.txt"
+            sector_filepath = os.path.join(percentile_output_dir, sector_filename)
+            with open(sector_filepath, "w") as sector_file:
+                for industry, tickers in sorted(industries.items()):
+                    sector_file.write(f"### {industry}\n")
+                    sector_file.write(", ".join(tickers) + "\n\n")
+
+        # Write the tickers to a single file if required
         base_name = os.path.basename(input_csv).split(".")[0]
         output_txt = os.path.join(
             percentile_output_dir,
@@ -61,10 +70,7 @@ def create_ticker_lists_by_sector(input_csvs, percentile, prefix, output_dir):
 
 
 def main(pct_min, prefix):
-    input_csvs = [
-        f'output/rs_stocks_screened_{date.today().strftime("%Y%m%d")}.csv',
-        f'output/filtered_mvps_{date.today().strftime("%Y%m%d")}.csv',
-    ]
+    input_csvs = [f'output/rs_stocks_screened_{date.today().strftime("%Y%m%d")}.csv']
     output_dir = "watchlists"  # Replace with the desired output directory
     create_ticker_lists_by_sector(input_csvs, pct_min, prefix, output_dir)
 

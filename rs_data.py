@@ -7,7 +7,6 @@ import datetime as dt
 import os
 import pandas_datareader.data as web
 import pickle
-import requests
 import yaml
 import yfinance as yf
 import pandas as pd
@@ -57,8 +56,11 @@ def cfg(key):
 
 
 def read_json(json_file):
-    with open(json_file, "r", encoding="utf-8") as fp:
-        return json.load(fp)
+    try:
+        with open(json_file, "r", encoding="utf-8") as fp:
+            return json.load(fp)
+    except FileNotFoundError:
+        return {}
 
 
 def write_to_file(dict, file):
@@ -145,7 +147,7 @@ def load_prices_from_yahoo():
     today = date.today() - dt.timedelta(days=1)
     start = time.time()
     start_date = today - dt.timedelta(days=365 + 183)  # 183 = 6 months
-    tickers_dict = {}
+    tickers_dict = read_json(PRICE_DATA_FILE)
     load_times = []
 
     securities = rs_nasdaq_securities.get_resolved_securities().values()
@@ -166,9 +168,7 @@ def track_progress(load_times, start, r_start, idx, security, securities):
     now = time.time()
     current_load_time = now - r_start
     load_times.append(current_load_time)
-    remaining_seconds = remaining_seconds = get_remaining_seconds(
-        load_times, idx, len(securities)
-    )
+    remaining_seconds = get_remaining_seconds(load_times, idx, len(securities))
     print_data_progress(
         security["ticker"],
         security["universe"],

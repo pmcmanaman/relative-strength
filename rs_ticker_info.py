@@ -124,8 +124,6 @@ def escape_ticker(ticker):
 
 def get_info_from_dict(dict, key):
     value = dict[key] if key in dict else "n/a"
-    # fix unicode
-    # value = value.replace("\u2014", " ")
     return value
 
 
@@ -152,15 +150,12 @@ TICKER_INFO_FILE = os.path.join(DIR, "data_persist", "ticker_info.json")
 
 def load_tickers_from_yahoo(ticker_info_dict, securities):
     print("*** Loading Stocks from Yahoo Finance ***")
-    new_entries = 0
 
     for idx, security in enumerate(securities):
         ticker = security["ticker"]
-        print(f"Loading {ticker}")
-        load_ticker_info(ticker_info_dict, ticker)
-        new_entries = new_entries + 1
-        if new_entries % 25 == 0:
-            write_to_file(ticker_info_dict, TICKER_INFO_FILE)
+        if ticker not in ticker_info_dict:
+            print(f"Loading {ticker}")
+            load_ticker_info(ticker_info_dict, ticker)
 
     return ticker_info_dict
 

@@ -26,13 +26,6 @@ ALL_STOCKS = cfg("USE_ALL_LISTED_STOCKS")
 TICKER_INFO_FILE = os.path.join(DIR, "data_persist", "ticker_info.json")
 TICKER_INFO_JSON = read_json(TICKER_INFO_FILE)
 REFERENCE_TICKER = cfg("REFERENCE_TICKER")
-REFERENCE_PRICE_SERIES = pd.Series(
-    list(
-        map(
-            lambda candle: candle["close"], PRICE_DATA_JSON[REFERENCE_TICKER]["candles"]
-        )
-    )
-)
 
 TITLE_RANK = "Rank"
 TITLE_TICKER = "Ticker"
@@ -101,19 +94,28 @@ def compute_relative_strength(ticker, relative_strengths):
         else "n/a"
     )
 
+    reference_price_series = pd.Series(
+        list(
+            map(
+                lambda candle: candle["close"],
+                PRICE_DATA_JSON[REFERENCE_TICKER]["candles"],
+            )
+        )
+    )
+
     if len(closes) >= 200:
         closes_series = pd.Series(closes)
-        rs = relative_strength(closes_series, REFERENCE_PRICE_SERIES)
+        rs = relative_strength(closes_series, reference_price_series)
         month = 20
         tmp_percentile = 100
         rs1m = relative_strength(
-            closes_series.head(-1 * month), REFERENCE_PRICE_SERIES.head(-1 * month)
+            closes_series.head(-1 * month), reference_price_series.head(-1 * month)
         )
         rs3m = relative_strength(
-            closes_series.head(-3 * month), REFERENCE_PRICE_SERIES.head(-3 * month)
+            closes_series.head(-3 * month), reference_price_series.head(-3 * month)
         )
         rs6m = relative_strength(
-            closes_series.head(-6 * month), REFERENCE_PRICE_SERIES.head(-6 * month)
+            closes_series.head(-6 * month), reference_price_series.head(-6 * month)
         )
 
         # if rs is too big assume there is faulty price data
