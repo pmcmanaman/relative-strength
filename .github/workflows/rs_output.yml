@@ -2,7 +2,7 @@ name: Generate relative strength rankings/watchlists
 
 on:
   schedule:
-    - cron: '0 2 * * 1-5'  # 2 AM UTC, which is 8 or 9 PM Central Time
+    - cron: '3 6 * * 1-5'  # 2 AM UTC, which is 8 or 9 PM Central Time
 
 jobs:
   run-script:
