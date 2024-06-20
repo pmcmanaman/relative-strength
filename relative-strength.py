@@ -10,8 +10,8 @@ import sys
 
 
 def main():
-    rs_ticker_info.main()
-    rs_data.main()
+    # rs_ticker_info.main()
+    # rs_data.main()
     rs_ranking.main()
     rs_stock_screener.main(79, 99)
     rs_watchlist.main(79, 90)

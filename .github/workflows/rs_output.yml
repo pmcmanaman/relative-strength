@@ -2,7 +2,7 @@ name: Generate relative strength rankings/watchlists
 
 on:
   schedule:
-    - cron: '3 6 * * 1-5'  # 2 AM UTC, which is 8 or 9 PM Central Time
+    - cron: '59 23 * * 1-5'  # midnight UTC, which is 6 or 7 PM Central Time
 
 jobs:
   run-script:
@@ -22,8 +22,20 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Run Python script
-      run: python relative-strength.py
+    - name: Fetch ticker metadata
+      run: python rs_ticker_info.py
+
+    - name: Fetch price data
+      run: python rs_data.py
+
+    - name: Generate RS rankings
+      run: python rs_ranking.py
+
+    - name: Apply screener
+      run: python rs_stock_screener.py
+
+    - name: Generate watchlists
+      run: python rs_watchlist.py
 
     - name: Commit and push changes
       run: |

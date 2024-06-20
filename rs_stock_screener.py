@@ -120,4 +120,4 @@ def main(pct_min, pct_max):
 
 
 if __name__ == "__main__":
-    main()
+    main(79, 99)
