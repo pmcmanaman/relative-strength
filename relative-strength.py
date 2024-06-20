@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import rs_ticker_info
 import rs_data
+import rs_mvp
 import rs_ranking
 import rs_stock_screener
 import rs_watchlist
@@ -26,9 +27,10 @@ def main():
     prefix = args.watchlist_prefix
 
     # rs_ticker_info.main()
-    # rs_data.main()
-    # rs_ranking.main()
+    rs_data.main()
+    rs_ranking.main()
     rs_stock_screener.main(pct_min, pct_max)
+    # rs_mvp.main()
     rs_watchlist.main(pct_min, prefix)
 
 

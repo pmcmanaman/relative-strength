@@ -74,6 +74,10 @@ def compute_technicals(ticker):
         "200_day_sma": sma(closes, 200),
         "52_week_high": max([candle["high"] for candle in candles]),
         "52_week_low": min([candle["low"] for candle in candles]),
+        "high_yesterday": candles[-2]["high"],
+        "high_today": candles[-1]["high"],
+        "low_yesterday": candles[-2]["low"],
+        "high_today": candles[-1]["low"],
     }
 
 
@@ -106,7 +110,7 @@ def main(pct_min, pct_max):
     screened_df.to_csv(
         os.path.join(
             DIR,
-            "output/screened",
+            "output",
             f'rs_stocks_screened_{date.today().strftime("%Y%m%d")}.csv',
         ),
         index=False,
