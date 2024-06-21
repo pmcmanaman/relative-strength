@@ -1,0 +1,36 @@
+### REIT - Healthcare Facilities
+NYSE:CTRE
+
+### REIT - Industrial
+NYSE:IIPR, NYSE:EXR
+
+### REIT - Mortgage
+NYSE:AOMR, NYSE:ACR
+
+### REIT - Residential
+NYSE:ESS, NYSE:AIRC, NYSE:CSR
+
+### REIT—Diversified
+NYSE:OLP
+
+### REIT—Healthcare Facilities
+AMEX:STRW, NYSE:NHI, NYSE:WELL
+
+### REIT—Industrial
+NYSE:NSA
+
+### REIT—Mortgage
+NYSE:TRTX, NASDAQ:NYMTZ
+
+### REIT—Office
+NYSE:SLG
+
+### REIT—Retail
+NASDAQ:WHLRD
+
+### REIT—Specialty
+NYSE:IRM, NYSE:DLR
+
+### Real Estate Services
+NYSE:JLL, NYSE:HASI, NYSE:IRS, NYSE:MLP
+

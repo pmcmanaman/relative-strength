@@ -1,0 +1,18 @@
+### Advertising Agencies
+NASDAQ:STCN, NASDAQ:QNST, NASDAQ:MGNI
+
+### Electronic Gaming & Multimedia
+NASDAQ:SOHU, NASDAQ:GRVY
+
+### Entertainment
+NASDAQ:NFLX, NYSE:CNK, NYSE:TKO
+
+### Internet Content & Information
+NYSE:TME, NYSE:SPOT, NYSE:PINS, NYSE:SNAP, NASDAQ:META, NASDAQ:GOOG, NASDAQ:GOOGL, NASDAQ:BZ
+
+### Publishing
+NYSE:NYT, NYSE:WLY
+
+### Telecom Services
+NASDAQ:TIGO, NASDAQ:FYBR, NASDAQ:VEON, NASDAQ:TMUS, NYSE:IDT
+

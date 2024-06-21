@@ -1,0 +1,30 @@
+### Beverages - Non-Alcoholic
+NASDAQ:COKE
+
+### Beverages—Non-Alcoholic
+NYSE:PRMW
+
+### Discount Stores
+NASDAQ:COST, NASDAQ:OLLI, NYSE:BJ, NYSE:WMT
+
+### Education & Training Services
+NASDAQ:APEI, NYSE:FEDU, NYSE:UTI, NYSE:ATGE, NYSE:LRN, NASDAQ:PRDO, NASDAQ:STRA, NASDAQ:LINC
+
+### Farm Products
+NASDAQ:VITL
+
+### Food Distribution
+NASDAQ:CHEF
+
+### Grocery Stores
+NASDAQ:SFM, NYSE:NGVC
+
+### Household & Personal Products
+NYSE:HIMS, NYSE:CL, NASDAQ:UG
+
+### Packaged Foods
+NASDAQ:SOWG, NASDAQ:FRPT, NASDAQ:FTLF, NASDAQ:PPC, NASDAQ:SENEB
+
+### Tobacco
+NYSE:TPB
+
