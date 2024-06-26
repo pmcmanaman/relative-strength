@@ -2,7 +2,7 @@
 NYSE:CTRE
 
 ### REIT - Industrial
-NYSE:IIPR
+NYSE:IIPR, NYSE:EXR
 
 ### REIT - Mortgage
 NYSE:AOMR, NYSE:ACR
@@ -10,27 +10,30 @@ NYSE:AOMR, NYSE:ACR
 ### REIT - Residential
 NYSE:ESS, NYSE:AIRC, NYSE:CSR
 
-### REIT—Diversified
-NASDAQ:MDRRP
+### REIT - Retail
+NYSE:AKR
 
 ### REIT—Healthcare Facilities
-AMEX:STRW, NYSE:NHI, NYSE:WELL
+AMEX:STRW, NYSE:WELL, NYSE:NHI
 
 ### REIT—Industrial
 NYSE:NSA
 
 ### REIT—Mortgage
-NASDAQ:NYMTZ
+NYSE:TRTX
 
 ### REIT—Office
-NYSE:SLG
+NYSE:SLG, NYSE:HIW
+
+### REIT—Residential
+NYSE:IRT
 
 ### REIT—Retail
-NASDAQ:WHLRD
+NASDAQ:WHLRD, NYSE:WSR
 
 ### REIT—Specialty
 NYSE:IRM, NYSE:DLR
 
 ### Real Estate Services
-NYSE:JLL, NYSE:MLP, NYSE:HASI, NYSE:IRS
+NYSE:HASI, NYSE:JLL, NYSE:MLP, NYSE:CWK
 
