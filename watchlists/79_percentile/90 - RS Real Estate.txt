@@ -5,19 +5,16 @@ NYSE:IIPR
 NYSE:AOMR, NYSE:ACR
 
 ### REIT - Residential
-NYSE:AIRC, NYSE:ESS, NYSE:CSR
+NYSE:AIRC, NYSE:CSR, NYSE:ESS
 
 ### REIT—Healthcare Facilities
 AMEX:STRW, NYSE:NHI, NYSE:WELL
-
-### REIT—Industrial
-NYSE:NSA
 
 ### REIT—Mortgage
 NYSE:TRTX
 
 ### REIT—Office
-NYSE:SLG, NYSE:HIW
+NYSE:SLG
 
 ### REIT—Residential
 NYSE:IRT
