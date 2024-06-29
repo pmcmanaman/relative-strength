@@ -1,3 +1,6 @@
+### REIT - Healthcare Facilities
+NYSE:CTRE
+
 ### REIT - Industrial
 NYSE:IIPR
 
@@ -5,7 +8,10 @@ NYSE:IIPR
 NYSE:AOMR, NYSE:ACR
 
 ### REIT - Residential
-NYSE:AIRC, NYSE:CSR, NYSE:ESS
+NYSE:CSR, NYSE:ESS
+
+### REIT - Retail
+NYSE:ALX
 
 ### REIT—Healthcare Facilities
 AMEX:STRW, NYSE:NHI, NYSE:WELL
@@ -26,5 +32,5 @@ NASDAQ:WHLRD, NYSE:WSR
 NYSE:IRM, NASDAQ:LAMR, NYSE:DLR
 
 ### Real Estate Services
-NYSE:MLP, NYSE:HASI, NYSE:JLL
+NYSE:MLP, NYSE:JLL, NYSE:HASI, NYSE:IRS
 
