@@ -2,11 +2,11 @@
 NYSE:ARIS
 
 ### Utilities - Renewable
-NASDAQ:CEG
+NASDAQ:CEG, NASDAQ:AY
 
 ### Utilities—Independent Power Producers
 NYSE:VST, NYSE:NRG
 
 ### Utilities—Regulated Electric
-NASDAQ:VIASP, NYSE:PEG
+NYSE:PEG
 
