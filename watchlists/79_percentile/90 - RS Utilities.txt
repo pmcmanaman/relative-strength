@@ -1,3 +1,6 @@
+### Utilities - Regulated Electric
+NYSE:CEPU
+
 ### Utilities - Regulated Water
 NYSE:ARIS
 
@@ -8,5 +11,5 @@ NASDAQ:CEG, NASDAQ:AY
 NYSE:VST, NYSE:NRG
 
 ### Utilities—Regulated Electric
-NYSE:PEG
+NASDAQ:VIASP, NYSE:PEG
 
