@@ -8,8 +8,8 @@ NYSE:ARIS
 NASDAQ:CEG, NASDAQ:AY
 
 ### Utilities—Independent Power Producers
-NYSE:VST, NYSE:NRG
+NYSE:VST, NYSE:NRG, NYSE:KEN
 
 ### Utilities—Regulated Electric
-NASDAQ:VIASP, NYSE:PEG
+NYSE:PEG, NYSE:NEE
 
