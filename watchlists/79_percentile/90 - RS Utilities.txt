@@ -1,15 +1,9 @@
-### Utilities - Regulated Electric
-NYSE:CEPU
-
 ### Utilities - Regulated Water
 NYSE:ARIS
 
 ### Utilities - Renewable
-NASDAQ:CEG, NYSE:BEPC
+NASDAQ:CEG
 
 ### Utilities—Independent Power Producers
 NYSE:VST, NYSE:NRG
-
-### Utilities—Regulated Electric
-NYSE:PEG, NYSE:NEE
 
