@@ -5,5 +5,5 @@ NYSE:ARIS
 NASDAQ:CEG
 
 ### Utilities—Independent Power Producers
-NYSE:VST, NYSE:NRG
+NYSE:VST, NYSE:NRG, NYSE:KEN
 
