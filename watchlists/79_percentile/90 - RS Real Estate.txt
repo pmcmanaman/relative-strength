@@ -25,6 +25,9 @@ NYSE:TRTX
 ### REIT—Office
 NYSE:SLG, NYSE:HIW, NYSE:PDM
 
+### REIT—Residential
+NYSE:IRT
+
 ### REIT—Retail
 NASDAQ:WHLRD, NYSE:WSR
 
