@@ -1,5 +1,5 @@
 ### Utilities - Regulated Water
-NYSE:ARIS, NASDAQ:CDZIP
+NYSE:ARIS
 
 ### Utilities—Independent Power Producers
 NYSE:NRG, NYSE:KEN
