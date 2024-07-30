@@ -2,5 +2,5 @@
 NYSE:ARIS
 
 ### Utilities—Independent Power Producers
-NYSE:NRG
+NYSE:NRG, NYSE:KEN
 
