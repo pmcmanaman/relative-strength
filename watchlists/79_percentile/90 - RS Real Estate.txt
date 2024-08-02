@@ -2,7 +2,7 @@
 NYSE:AAT
 
 ### REIT - Industrial
-NYSE:IIPR, NYSE:EXR
+NYSE:IIPR
 
 ### REIT - Mortgage
 NYSE:AOMR
@@ -13,26 +13,17 @@ NYSE:CUZ
 ### REIT - Retail
 NYSE:AKR
 
-### REIT—Diversified
-NYSE:OLP, NYSE:EPRT
-
 ### REIT—Healthcare Facilities
-AMEX:STRW, NYSE:NHI, NYSE:WELL
-
-### REIT—Industrial
-NYSE:NSA
-
-### REIT—Mortgage
-NYSE:TRTX
+AMEX:STRW, NYSE:NHI
 
 ### REIT—Office
-NYSE:SLG, NYSE:PDM, NYSE:HIW
+NYSE:SLG, NYSE:HIW, NYSE:PDM, NYSE ARCA:ESBA
 
 ### REIT—Residential
-NYSE:NXRT
+NYSE:NXRT, NYSE:IRT
 
 ### REIT—Retail
-NASDAQ:WHLRD, NYSE:WSR
+NASDAQ:WHLRD
 
 ### REIT—Specialty
 NYSE:IRM

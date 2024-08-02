@@ -1,6 +1,9 @@
 ### Utilities - Regulated Water
 NYSE:ARIS
 
+### Utilities - Renewable
+NASDAQ:CEG
+
 ### Utilities—Independent Power Producers
-NYSE:NRG
+NYSE:NRG, NYSE:KEN
 
