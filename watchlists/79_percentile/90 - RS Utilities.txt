@@ -1,17 +1,17 @@
 ### Utilities - Regulated Electric
-NASDAQ:AEP, NYSE:ETR
+NASDAQ:AEP
 
 ### Utilities - Regulated Water
-NASDAQ:CDZIP
+NYSE:ARIS, NASDAQ:CDZIP
 
 ### Utilities - Renewable
-NYSE:CWEN
+NASDAQ:CEG, NYSE:CWEN
 
 ### Utilities—Independent Power Producers
-NYSE:NRG, NYSE:KEN
+NYSE:NRG, NYSE:KEN, NYSE:PAM
 
 ### Utilities—Regulated Electric
-NYSE:SO, NYSE:PEG, NYSE:DUK, NYSE:EIX, NYSE:NEE, NYSE:D, NYSE:PNW
+NYSE:PEG, NYSE:SO, NYSE:EIX, NYSE:DUK, NYSE:NEE, NYSE:PNW
 
 ### Utilities—Regulated Gas
 NYSE:NI
