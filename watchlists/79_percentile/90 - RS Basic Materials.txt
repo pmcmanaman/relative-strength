@@ -4,6 +4,9 @@ NASDAQ:USLM
 ### Chemicals
 NYSE:VHI
 
+### Coking Coal
+NYSE:HCC
+
 ### Gold
 NYSE:HMY, AMEX:IDR, NYSE:AU, NYSE:KGC, NYSE:AEM, NYSE:EGO, NYSE:AGI, NYSE:NEM
 
