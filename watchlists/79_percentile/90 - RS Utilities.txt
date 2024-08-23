@@ -5,8 +5,8 @@ NYSE:ARIS
 NYSE:CWEN
 
 ### Utilities—Independent Power Producers
-NYSE:NRG, NYSE:PAM
+NYSE:NRG
 
 ### Utilities—Regulated Electric
-NYSE:NEE, NYSE:PEG, NYSE:EIX, NYSE:DUK
+NYSE:NEE, NYSE:PEG, NYSE:EIX, NYSE:SO, NYSE:DUK
 
