@@ -5,7 +5,7 @@ NYSE:ARIS
 NYSE:NRG
 
 ### Utilities—Regulated Electric
-NYSE:PEG
+NYSE:EIX
 
 ### Utilities—Regulated Water
 NYSE:SBS
