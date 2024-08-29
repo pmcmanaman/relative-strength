@@ -7,6 +7,9 @@ NYSE:NRG
 ### Utilities—Regulated Electric
 NYSE:EIX
 
+### Utilities—Regulated Gas
+NYSE:NI
+
 ### Utilities—Regulated Water
 NYSE:SBS
 
