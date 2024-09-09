@@ -8,11 +8,8 @@ NYSE:ARIS
 NYSE:PAM
 
 ### Utilities—Regulated Electric
-NYSE:EIX, NYSE:DUK, NYSE:NEE, NYSE:SO, NYSE:PEG, NYSE:FE, NYSE:D
+NYSE:EIX, NYSE:SO, NYSE:DUK, NYSE:NEE, NYSE:PEG, NYSE:PPL, NYSE:D, NYSE:FE, NYSE:PNW
 
 ### Utilities—Regulated Gas
 NYSE:NI
-
-### Utilities—Regulated Water
-NYSE:SBS
 
