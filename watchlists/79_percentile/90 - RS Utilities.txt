@@ -13,3 +13,6 @@ NYSE:EIX, NYSE:SO, NYSE:DUK, NYSE:NEE, NYSE:PEG, NYSE:PPL, NYSE:D, NYSE:FE, NYSE
 ### Utilities—Regulated Gas
 NYSE:NI
 
+### Utilities—Regulated Water
+NYSE:SBS
+
