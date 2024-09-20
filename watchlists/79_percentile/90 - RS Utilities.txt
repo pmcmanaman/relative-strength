@@ -11,7 +11,7 @@ NYSE:UTL
 NYSE:PAM, NYSE:TAC
 
 ### Utilities—Regulated Electric
-NYSE:NEE, NYSE:PEG, NYSE:EIX, NYSE:SO, NASDAQ:MGEE
+NYSE:PEG, NYSE:NEE, NYSE:EIX
 
 ### Utilities—Regulated Gas
 NYSE:NI
