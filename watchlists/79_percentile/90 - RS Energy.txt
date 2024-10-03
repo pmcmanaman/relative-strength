@@ -4,8 +4,14 @@ NYSE:SOC
 ### Oil & Gas E&P
 NYSE:TPL, NYSE:CNX, NASDAQ:PNRG
 
+### Oil & Gas Equipment & Services
+NYSE:KGS, NYSE:WHD
+
+### Oil & Gas Integrated
+NYSE:YPF, NYSE:TGS
+
 ### Oil & Gas Midstream
-NASDAQ:GLNG, NYSE:TRGP, NYSE:DTM, NYSE:EE, NASDAQ:VNOM, NYSE:TRP
+NASDAQ:GLNG, NYSE:TRGP, NASDAQ:VNOM, NYSE:EE, NYSE:DTM, NYSE:TRP
 
 ### Oil & Gas Refining & Marketing
 NYSE:WKC
