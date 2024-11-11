@@ -1,30 +1,24 @@
 ### Beverages - Non-Alcoholic
 NASDAQ:COCO
 
-### Beverages—Non-Alcoholic
-NYSE:PRMW
-
 ### Discount Stores
 NYSE:WMT
 
 ### Education & Training Services
-AMEX:COE, NYSE:LRN, NYSE:SKIL, NYSE:ATGE
+NASDAQ:LINC, NYSE:LRN, NYSE:ATGE, NYSE:GHC
 
 ### Farm Products
 NASDAQ:CALM, NASDAQ:LMNR, NYSE:FDP, NYSE:DOLE
 
 ### Food Distribution
-NYSE:UNFI, NYSE:USFD
+NYSE:UNFI, NYSE:USFD, NASDAQ:AVO
 
 ### Grocery Stores
 NASDAQ:SFM, NYSE:NGVC
 
-### Household & Personal Products
-NASDAQ:UG
-
 ### Packaged Foods
-NASDAQ:LFVN, NASDAQ:LWAY, NASDAQ:PPC, NASDAQ:FRPT, NYSE:INGR, NYSE:K
+AMEX:LSF, NASDAQ:LFVN, NASDAQ:PPC, NASDAQ:FRPT, NYSE:K
 
 ### Tobacco
-NYSE:TPB, NYSE:PM, NYSE:MO
+NYSE:TPB
 
