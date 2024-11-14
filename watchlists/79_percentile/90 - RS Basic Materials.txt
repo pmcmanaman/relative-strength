@@ -11,7 +11,7 @@ NYSE:RYAM
 NYSE:HBM
 
 ### Gold
-NYSE:KGC
+NYSE:KGC, NYSE:PAAS
 
 ### Other Industrial Metals & Mining
 NASDAQ:IPX
@@ -22,9 +22,12 @@ AMEX:SILV
 ### Paper & Paper Products
 NYSE:SLVM
 
+### Silver
+AMEX:MAG
+
 ### Specialty Chemicals
-NYSE:PRM, NASDAQ:HWKN, NYSE:WTTR
+NASDAQ:HWKN, NYSE:WTTR
 
 ### Steel
-NASDAQ:USAP, NYSE:MSB, NASDAQ:ASTL, NYSE:WS
+NASDAQ:USAP, NYSE:MSB, NASDAQ:ASTL
 
