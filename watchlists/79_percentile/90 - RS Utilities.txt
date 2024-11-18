@@ -5,8 +5,14 @@ NYSE:CEPU, NYSE:ETR
 NYSE:ARIS
 
 ### Utilities—Independent Power Producers
-NYSE:VST, NYSE:PAM, NYSE:NRG
+NYSE:VST, NYSE:PAM, NYSE:NRG, NYSE:TAC, NYSE:KEN
 
 ### Utilities—Regulated Electric
 NYSE:EDN, NASDAQ:MGEE
+
+### Utilities—Regulated Gas
+NYSE:NI
+
+### Utilities—Regulated Water
+NASDAQ:PCYO
 
