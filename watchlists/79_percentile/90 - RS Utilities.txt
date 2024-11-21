@@ -8,17 +8,14 @@ NYSE:ARIS
 NASDAQ:CEG
 
 ### Utilities—Independent Power Producers
-NYSE:VST, NYSE:PAM, NYSE:NRG, NYSE:KEN, NYSE:TAC
+NYSE:VST, NYSE:PAM, NYSE:NRG, NYSE:TAC, NYSE:KEN
 
 ### Utilities—Regulated Electric
-NYSE:EDN, NASDAQ:MGEE
+NYSE:OKLO, NYSE:EDN, NASDAQ:MGEE
 
 ### Utilities—Regulated Gas
 NYSE:NI
 
 ### Utilities—Regulated Water
 NASDAQ:PCYO
-
-### Utilities—Renewable
-NASDAQ:WAVE
 
