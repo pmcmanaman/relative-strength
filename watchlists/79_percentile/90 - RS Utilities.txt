@@ -11,7 +11,7 @@ NASDAQ:CEG
 NYSE:VST, NYSE:PAM, NYSE:NRG, NYSE:TAC, NYSE:KEN
 
 ### Utilities—Regulated Electric
-NYSE:OKLO, NYSE:EDN, NASDAQ:MGEE
+NYSE:EDN, NASDAQ:MGEE, NYSE:PEG
 
 ### Utilities—Regulated Gas
 NYSE:NI
