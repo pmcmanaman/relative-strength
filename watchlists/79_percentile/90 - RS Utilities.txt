@@ -11,7 +11,7 @@ NASDAQ:CEG
 NYSE:VST, NYSE:PAM, NYSE:NRG, NYSE:TAC, NYSE:KEN
 
 ### Utilities—Regulated Electric
-NYSE:OKLO, NYSE:EDN
+NYSE:EDN
 
 ### Utilities—Regulated Water
 NASDAQ:PCYO

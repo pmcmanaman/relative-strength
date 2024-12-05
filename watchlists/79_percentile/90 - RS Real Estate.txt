@@ -10,9 +10,6 @@ NYSE:DEI
 ### REIT - Retail
 NYSE:AKR, NYSE:CBL
 
-### REIT—Diversified
-NYSE:OLP
-
 ### REIT—Office
 NYSE:VNO, NYSE:SLG, NYSE:NLOP
 
@@ -20,7 +17,7 @@ NYSE:VNO, NYSE:SLG, NYSE:NLOP
 NASDAQ:WHLRD, NYSE:MAC
 
 ### REIT—Specialty
-NYSE:IRM, NYSE:OUT, NYSE:DLR
+NYSE:IRM, NYSE:DLR
 
 ### Real Estate - Development
 NYSE:AXR
