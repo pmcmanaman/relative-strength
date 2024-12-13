@@ -1,8 +1,8 @@
 ### Utilities - Regulated Electric
-NYSE:CEPU, NYSE:ETR
+NYSE:CEPU
 
 ### Utilities - Regulated Water
-NYSE:ARIS, NASDAQ:CDZIP
+NYSE:ARIS
 
 ### Utilities - Renewable
 NASDAQ:CEG
@@ -15,7 +15,4 @@ NYSE:EDN
 
 ### Utilities—Regulated Water
 NASDAQ:PCYO
-
-### Utilities—Renewable
-NASDAQ:WAVE
 
