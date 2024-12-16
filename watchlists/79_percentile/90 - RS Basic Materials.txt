@@ -4,14 +4,8 @@ NASDAQ:CENX
 ### Building Materials
 NASDAQ:USLM, NYSE:LOMA, NYSE:TGLS, NYSE:KNF, NYSE:SUM
 
-### Chemicals
-NYSE:RYAM
-
-### Copper
-NYSE:HBM
-
 ### Gold
-NYSE:KGC, NYSE:PAAS, NYSE:AEM
+NYSE:KGC, NYSE:AEM
 
 ### Other Industrial Metals & Mining
 NASDAQ:IPX, NYSE:SKE, NYSE:MP
@@ -22,12 +16,9 @@ NASDAQ:PPTA, NYSE:GATO, AMEX:SILV
 ### Paper & Paper Products
 NYSE:SLVM
 
-### Silver
-AMEX:MAG
-
 ### Specialty Chemicals
 NYSE:PRM, NASDAQ:HWKN, NYSE:WTTR
 
 ### Steel
-NASDAQ:USAP, NYSE:MSB, NYSE:WS
+NASDAQ:USAP, NYSE:WS, NYSE:MSB
 
