@@ -8,7 +8,7 @@ NYSE:ARIS, NASDAQ:CDZIP
 NASDAQ:CEG
 
 ### Utilities—Independent Power Producers
-NYSE:VST, NYSE:PAM, NYSE:TAC, NYSE:NRG, NYSE:KEN
+NYSE:VST, NYSE:TAC, NYSE:PAM, NYSE:NRG
 
 ### Utilities—Regulated Electric
 NYSE:EDN
