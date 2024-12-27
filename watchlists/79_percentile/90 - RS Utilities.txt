@@ -4,8 +4,11 @@ NYSE:CEPU, NYSE:ETR
 ### Utilities - Regulated Water
 NYSE:ARIS, NASDAQ:CDZIP
 
+### Utilities - Renewable
+NASDAQ:CEG
+
 ### Utilities—Independent Power Producers
-NYSE:VST, NYSE:TAC, NYSE:PAM, NYSE:NRG, NYSE:KEN
+NYSE:VST, NYSE:PAM, NYSE:TAC, NYSE:NRG, NYSE:KEN
 
 ### Utilities—Regulated Electric
 NYSE:OKLO, NYSE:EDN

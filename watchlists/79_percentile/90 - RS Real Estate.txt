@@ -16,6 +16,9 @@ NASDAQ:WHLRD, NASDAQ:ROIC, NYSE:MAC
 ### REIT—Specialty
 NYSE:DLR
 
+### Real Estate - Development
+NYSE:AXR
+
 ### Real Estate Services
 NYSE:IRS, NYSE:CBRE
 
