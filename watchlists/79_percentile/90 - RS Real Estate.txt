@@ -1,11 +1,14 @@
 ### REIT - Healthcare Facilities
 NYSE:AHR
 
+### REIT - Mortgage
+NYSE:ACR
+
 ### REIT - Office
 NYSE:DEI, NYSE:CUZ
 
 ### REIT - Retail
-NYSE:AKR, NYSE:CBL
+NYSE:CBL, NYSE:AKR
 
 ### REIT—Office
 NYSE:VNO, NYSE:NLOP
@@ -15,9 +18,6 @@ NASDAQ:WHLRD, NASDAQ:ROIC, NYSE:MAC
 
 ### REIT—Specialty
 NYSE:DLR
-
-### Real Estate - Development
-NYSE:AXR
 
 ### Real Estate Services
 NYSE:IRS, NYSE:CBRE

@@ -10,9 +10,6 @@ NASDAQ:IPX, NYSE:SKE
 ### Other Precious Metals & Mining
 NASDAQ:PPTA
 
-### Paper & Paper Products
-NYSE:SLVM
-
 ### Specialty Chemicals
 NYSE:PRM, NASDAQ:HWKN, NYSE:WTTR
 
