@@ -8,7 +8,7 @@ NYSE:ARIS, NASDAQ:CDZIP
 NYSE:VST, NYSE:PAM, NYSE:TAC, NYSE:KEN, NYSE:NRG
 
 ### Utilities—Regulated Electric
-NYSE:OKLO, NYSE:EDN
+NYSE:EDN, NYSE:OKLO, NASDAQ:VIASP
 
 ### Utilities—Regulated Gas
 NYSE:NI
