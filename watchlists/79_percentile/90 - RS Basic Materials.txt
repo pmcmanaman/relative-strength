@@ -4,6 +4,9 @@ NASDAQ:USLM, NYSE:LOMA, NYSE:TGLS, NASDAQ:SMID, NYSE:SUM, NYSE:KNF
 ### Chemicals
 NYSE:RYAM
 
+### Gold
+NYSE:KGC
+
 ### Other Industrial Metals & Mining
 NASDAQ:IPX, NYSE:SKE
 
