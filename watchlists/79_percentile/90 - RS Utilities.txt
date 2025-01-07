@@ -13,9 +13,6 @@ NYSE:VST, NYSE:PAM, NYSE:TAC, NYSE:KEN, NYSE:NRG
 ### Utilities—Regulated Electric
 NYSE:OKLO, NYSE:EDN
 
-### Utilities—Regulated Gas
-NYSE:NI
-
 ### Utilities—Regulated Water
 NASDAQ:PCYO
 
