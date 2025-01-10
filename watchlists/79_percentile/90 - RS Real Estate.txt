@@ -7,6 +7,9 @@ NYSE:ACR
 ### REIT - Retail
 NYSE:CBL
 
+### REIT—Healthcare Facilities
+NYSE:WELL
+
 ### REIT—Office
 NYSE:VNO
 
