@@ -1,5 +1,5 @@
 ### Utilities - Regulated Electric
-NYSE:ETR, NYSE:CEPU
+NYSE:CEPU, NYSE:ETR
 
 ### Utilities - Regulated Water
 NYSE:ARIS, NASDAQ:CDZIP
@@ -8,10 +8,10 @@ NYSE:ARIS, NASDAQ:CDZIP
 NASDAQ:CEG, NYSE:GEV
 
 ### Utilities—Independent Power Producers
-NYSE:VST, NYSE:TAC, NYSE:PAM, NYSE:NRG, NYSE:KEN
+NYSE:VST, NYSE:PAM, NYSE:NRG, NYSE:KEN
 
 ### Utilities—Regulated Electric
-NYSE:OKLO, NASDAQ:VIASP
+NYSE:OKLO
 
 ### Utilities—Regulated Gas
 NYSE:UGI, NYSE:NI

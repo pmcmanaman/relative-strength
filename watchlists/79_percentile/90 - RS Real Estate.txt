@@ -4,6 +4,9 @@ NYSE:AHR
 ### REIT - Mortgage
 NYSE:ACR
 
+### REIT - Retail
+NYSE:CBL
+
 ### REIT—Healthcare Facilities
 NYSE:WELL
 
@@ -11,10 +14,7 @@ NYSE:WELL
 NYSE:VNO
 
 ### REIT—Retail
-NASDAQ:WHLRD, NASDAQ:ROIC, NYSE:MAC
-
-### Real Estate - Development
-NYSE:AXR
+NASDAQ:WHLRD, NYSE:MAC, NASDAQ:ROIC
 
 ### Real Estate Services
 NYSE:IRS, NYSE:CBRE, NYSE:JLL

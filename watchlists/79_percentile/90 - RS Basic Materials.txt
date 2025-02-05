@@ -1,23 +1,17 @@
-### Aluminum
-NASDAQ:CENX
-
 ### Building Materials
-NYSE:LOMA, NYSE:TGLS, NYSE:SUM, NYSE:KNF, NYSE:CRH
-
-### Chemicals
-NYSE:RYAM
+NYSE:LOMA, NYSE:TGLS, NYSE:KNF, NYSE:SUM
 
 ### Gold
-NYSE:KGC, NASDAQ:SSRM
+NYSE:KGC, NYSE:AEM, NASDAQ:SSRM
 
 ### Other Industrial Metals & Mining
-NYSE:SKE, NYSE:MP
+NYSE:SKE, NASDAQ:USGO, NYSE:MP
 
 ### Other Precious Metals & Mining
-NASDAQ:PPTA
+NASDAQ:PPTA, AMEX:SILV
 
 ### Specialty Chemicals
-NYSE:PRM, NYSE:WTTR, NYSE:ODC, NASDAQ:HWKN
+NYSE:WTTR, NASDAQ:HWKN, NYSE:ODC
 
 ### Steel
 NYSE:MSB
