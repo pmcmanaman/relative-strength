@@ -1,17 +1,14 @@
 ### Building Materials
-NYSE:LOMA, NYSE:TGLS, NYSE:KNF, NYSE:SUM
+NYSE:LOMA, NYSE:TGLS, NYSE:KNF
 
 ### Gold
 NASDAQ:USAU, NYSE:KGC, NASDAQ:SSRM, NYSE:AEM
 
 ### Other Industrial Metals & Mining
-NYSE:SKE, NASDAQ:USGO, NYSE:MP
+NYSE:SKE, NYSE:MP
 
 ### Other Precious Metals & Mining
 NASDAQ:PPTA, AMEX:SILV
-
-### Specialty Chemicals
-NYSE:WTTR, NASDAQ:HWKN
 
 ### Steel
 NYSE:MSB

@@ -1,5 +1,5 @@
 ### Utilities - Regulated Electric
-NYSE:CEPU, NYSE:ETR
+NYSE:ETR, NYSE:CEPU, NYSE:AEE
 
 ### Utilities - Regulated Water
 NYSE:ARIS, NASDAQ:CDZIP
