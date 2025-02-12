@@ -11,7 +11,7 @@ NASDAQ:CEG, NYSE:GEV
 NYSE:VST, NYSE:PAM, NYSE:NRG, NYSE:KEN
 
 ### Utilities—Regulated Electric
-NYSE:OKLO
+NYSE:OKLO, NYSE:EDN
 
 ### Utilities—Regulated Gas
 NYSE:UGI, NYSE:NI
