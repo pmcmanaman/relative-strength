@@ -2,19 +2,19 @@
 NASDAQ:CENX
 
 ### Building Materials
-NYSE:LOMA, NYSE:TGLS, NYSE:KNF
+NYSE:LOMA, NYSE:TGLS
 
 ### Gold
 NASDAQ:USAU, NASDAQ:SSRM, NYSE:KGC, NYSE:AEM
 
 ### Other Industrial Metals & Mining
-NYSE:SKE, NYSE:MP
+NASDAQ:USGO, NYSE:SKE, NYSE:MP
 
 ### Other Precious Metals & Mining
 NASDAQ:PPTA, AMEX:SILV
 
 ### Specialty Chemicals
-NYSE:WTTR
+NYSE:WTTR, NYSE:ODC
 
 ### Steel
 NYSE:MSB
