@@ -14,14 +14,11 @@ NYSE:WELL
 NYSE:VNO
 
 ### REIT—Retail
-NASDAQ:WHLRD, NYSE:MAC
+NASDAQ:WHLRD
 
 ### REIT—Specialty
 NYSE:OUT
 
-### Real Estate - Development
-NYSE:AXR
-
 ### Real Estate Services
-NYSE:NYC, NYSE:CBRE, NYSE:JLL
+NYSE:NYC, NYSE:CBRE, NYSE:IRS
 
