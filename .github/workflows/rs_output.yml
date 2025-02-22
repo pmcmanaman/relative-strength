@@ -1,8 +1,8 @@
 name: Generate relative strength rankings/watchlists
 
 on:
-  schedule:
-    - cron: '59 22 * * 1-5'  # midnight UTC, which is 6 or 7 PM Central Time
+#  schedule:
+#    - cron: '59 22 * * 1-5'  # midnight UTC, which is 6 or 7 PM Central Time
   workflow_dispatch:
 
 jobs:
